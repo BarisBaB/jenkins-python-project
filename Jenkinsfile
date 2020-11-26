@@ -46,5 +46,14 @@ pipeline{
                     sh "docker tag clarusway/jenkins-python-project 734475798004.dkr.ecr.us-east-1.amazonaws.com/jenkins-python-project:latest"
                 }
             }
+        stage('push'){
+                agent any
+                steps{
+                    sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 734475798004.dkr.ecr.us-east-1.amazonaws.com"
+                    sh "docker push 734475798004.dkr.ecr.us-east-1.amazonaws.com/jenkins-python-project:latest"
+                }
+}
+
+        
     }
 }
