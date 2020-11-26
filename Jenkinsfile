@@ -39,5 +39,12 @@ pipeline{
                     }
                 }
             }
+        stage('build'){
+                agent any
+                steps{
+                    sh "docker build -t clarusway/jenkins-python-project ."
+                    sh "docker tag clarusway/jenkins-python-project 734475798004.dkr.ecr.us-east-1.amazonaws.com/jenkins-python-project:latest"
+                }
+            }
     }
 }
